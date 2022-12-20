@@ -1,7 +1,7 @@
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { userState } from "../../recoil";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.header`
   background-color: #dde0ea;
@@ -46,12 +46,12 @@ const Header = () => {
   return (
     <StyledHeader>
       <ContentsBox>
-        <div>Logo</div>
+        <Link to="/">Logo</Link>
         {user ? (
           <Nav>
             <ul>
               <li>Bookmark</li>
-              <li>Admin</li>
+              <Link to="/admin">Admin</Link>
               <li onClick={handleClickLogin}>{user}</li>
             </ul>
           </Nav>
@@ -59,7 +59,7 @@ const Header = () => {
           <Nav>
             <ul>
               <li>Bookmark</li>
-              <li>Admin</li>
+              <Link to="/admin">Admin</Link>
               <li>SingUp</li>
               <li onClick={handleClickLogin}>Login</li>
             </ul>
