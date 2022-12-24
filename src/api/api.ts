@@ -25,7 +25,7 @@ export const getItemDataID = async (id: any) => {
 };
 
 //UPDATE
-export const editItemData = async (data: Item) => {
+export const editItemData = async (data: ItemData) => {
   const response = await shopAxios.patch<Item>(`/items/${data.id}`, data);
   return response.data;
 };

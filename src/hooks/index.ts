@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
+import { DefaultValue, useRecoilState } from "recoil";
 import { getItemData } from "../api/api";
 import { itemsState } from "../recoil/item";
 import { Item } from "../types";
@@ -33,15 +33,21 @@ export const useFetchItems = () => {
 };
 
 export const useTextInput = ({
+  defaultValue = "",
   maxLength,
   minLength,
 }: {
+  defaultValue?: string;
   maxLength?: number;
   minLength?: number;
 }) => {
   const [value, setValue] = useState("");
   const isValid = useRef<boolean>(true);
   const errorText = useRef<string>("");
+
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
 
   const onChangeInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,13 +84,19 @@ export const useTextInput = ({
 export const useNumberInput = ({
   maxLength,
   minLength,
+  defaultValue = 0,
 }: {
   maxLength?: number;
   minLength?: number;
+  defaultValue?: number;
 }) => {
   const [value, setValue] = useState(0);
   const isValid = useRef<boolean>(true);
   const errorText = useRef<string>("");
+
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
 
   const onChangeInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

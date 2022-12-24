@@ -13,8 +13,9 @@ export interface ItemData {
   name: string;
   description: string;
   price: number;
-  quantity: number | "ondemand";
+  quantity: number; //| "ondemand";
   thumbnail?: string;
+  id?: number | string;
 }
 
 export interface Item extends ItemData {
